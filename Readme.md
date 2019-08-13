@@ -8,6 +8,11 @@ This is a redux-like approach to state management using React's [Context API](ht
 ## Basic Idea
 We set up a `context` provider that wraps the entire app. The `value` of that context provider is the result of the `useReducer` hook, which includes the current state, plus a `dispatch` function for updating the state.
 
+## Installation notes
+`yarn add https://github.com/jaredloson/cosmic-react-state-management.git`
+
+> Currently, this requires the repo to be `public`
+
 ## How to Use
 
 1. Set up your `initialState` and `reducer`, and pass these to the `createAppState` function.
@@ -60,7 +65,7 @@ export const wrapRootElement = ({ element }) => {
 }
 ```
 
-3. Use app state in your components.
+3. Get/set state using `useAppState` in functional components.
 ```
 // src/components/ThemeChanger.js
 
@@ -83,7 +88,66 @@ const ThemeChanger = () => {
 export default ThemeChanger;
 ```
 
-4. If needed, register a middleware function to run before updating state. This is useful if there's extra functionality that is always related to a particular state change.
+4. Get/set state using `AppStateConsumer` in class-based components
+```
+// src/components/ThemeChangerClass.js
+
+import { AppStateConsumer } from "../state";
+
+class ThemeChangerClass extends React.Component {
+
+  constructor() {
+    super();
+    this.changeTheme = this.changeTheme.bind(this);
+  }
+
+  changeTheme({ theme }, dispatch) {
+    dispatch({
+      type: "changeTheme",
+      newTheme: theme === "light" ? "dark" : "light",
+    });
+  }
+
+  render() {
+    return (
+      <AppStateConsumer>
+        {([ state, dispatch ]) => {
+          return(
+            <button 
+              type="button"
+              onClick={() => this.changeTheme(state, dispatch)}
+            >Change Theme</button>
+          );
+        }}
+      </AppStateConsumer>
+    );
+  }
+}
+
+export default ThemeChangerClass;
+```
+
+5. Multiple reducers 
+```
+// combine the reducers and initialState into single objects before passing to `createAppState`
+
+const reducer = {
+  theme: // theme reducer,
+  user: // user reducer, e.g., logged-in status,
+  nav: // nav reducer, e.g., mobile nav showing
+}
+
+const initialState = {
+  theme: // theme initial state,
+  user: // user initial state,
+  nav: // nav initial state,
+}
+
+export const { AppStateProvider, AppStateConsumer, useAppState } = createAppState(reducer, initialState);
+```
+
+
+6. Running "middleware" functions before changing state
 ```
 // src/state.js
 
@@ -101,5 +165,4 @@ registerMiddleware({
 > It makes sense to call `registerMiddleware` from wherever you define your reducer.
 
 ## TODO
-- Add examples (basic, multiple reducers)
-- Add tests?
+- move repo to `@designbycosmic` org
