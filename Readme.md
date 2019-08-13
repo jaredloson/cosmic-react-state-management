@@ -94,3 +94,7 @@ registerMiddleware({
 
 ```
 > It makes sense to call `registerMiddleware` from wherever you define your reducer.
+
+## TODO
+- Add examples (basic, multiple reducers)
+- Add tests?
