@@ -7,8 +7,20 @@
   "author": "Jared Loson <jaredloson@gmail.com>",
   "repository": "git@github.com:jaredloson/cosmic-react-state-management.git",
   "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "babel ./src --out-dir ./dist -s inline"
+  },
+  "files": [
+    "dist/*"
+  ],
   "peerDependencies": {
     "react": ">= 16.8.0",
     "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0"
   }
 }

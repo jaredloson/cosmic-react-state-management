@@ -22,14 +22,4 @@ export const registerMiddleware = ({ actionType, func }) => {
   }
 }
 
-//Example Use:
-
-// registerMiddleware({
-//   actionType: "clickedAnnouncement",
-//   func: () => {
-//     // track Google Analytics event
-//     ga.send("clickedAnnouncement");
-//   }
-// });
-
 export default { middleware, registerMiddleware };
