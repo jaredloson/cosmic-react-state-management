@@ -1,0 +1,14 @@
+{
+  "name": "cosmic-react-state-management",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "source": "src/index.js",
+  "description": "State management using React context and useReducer",
+  "author": "Jared Loson <jaredloson@gmail.com>",
+  "repository": "git@github.com:jaredloson/cosmic-react-state-management.git",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": "^16.8.3"
+  }
+}
