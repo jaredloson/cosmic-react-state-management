@@ -16,13 +16,10 @@ We set up a `context` provider that wraps the entire app. The `value` of that co
 
 import { createAppState } from "cosmic-react-state-management";
 
-const initialState = {
-  theme: 'light',
-};
-
+// Redux-like switch statement reducer 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'changeTheme':
+    case "changeTheme":
       return {
         ...state,
         color: action.newTheme,
@@ -33,10 +30,18 @@ const reducer = (state, action) => {
   }
 };
 
-export const { AppStateProvider, useAppState } = createAppState(reducer, initialState);
+// An object with the initial app state
+const initialState = {
+  theme: "light",
+};
+
+// After passing the reducer and initial state, `createAppState` returns a
+// React Context provider, consumer, and hook for getting/setting the app state
+export const { AppStateProvider, AppStateConsumer, useAppState } = createAppState(reducer, initialState);
 
 export default {
   AppStateProvider,
+  AppStateConsumer,
   useAppState,
 };
 ```
@@ -57,7 +62,7 @@ export const wrapRootElement = ({ element }) => {
 
 3. Use app state in your components.
 ```
-// src/ThemeChanger.js
+// src/components/ThemeChanger.js
 
 import React, { useContext } from "react";
 import { useAppState } from "../state";
