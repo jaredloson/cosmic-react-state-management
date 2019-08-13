@@ -1,6 +1,6 @@
 import { middleware } from "./middleware"; 
 
-export const bundleReducer = reducer => (state, action) => {
+const bundleReducer = reducer => (state, action) => {
   // First check if this action has any "middleware" functionality we want to run
   if (Array.isArray(middleware[action.type])) {
     middleware[action.type].forEach(func => func(action));
@@ -16,4 +16,4 @@ export const bundleReducer = reducer => (state, action) => {
   return newState;  
 };
 
-export default { bundleReducer };
+export default bundleReducer;
