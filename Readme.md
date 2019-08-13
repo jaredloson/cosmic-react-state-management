@@ -1,6 +1,6 @@
 # App State
 
-This is a redux-like approach to state management using React's [Context API](https://reactjs.org/docs/context.html) and the [useReducer hook](https://reactjs.org/docs/hooks-reference.html#usereducer). Basic understanding of these concepts is required.
+This is a redux-like approach to state management using React's [Context API](https://reactjs.org/docs/context.html) and the [useReducer hook](https://reactjs.org/docs/hooks-reference.html#usereducer). Basic understanding of these concepts is helpful.
 
 ## Inspired by this blog post
 [State Management with React Hooks and Context API in 10 lines of code!](https://medium.com/simply/state-management-with-react-hooks-and-context-api-at-10-lines-of-code-baf6be8302c)
